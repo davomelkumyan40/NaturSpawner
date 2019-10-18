@@ -54,7 +54,9 @@ namespace NaturallySpawner
                     {
                         IsFirstTime = false;
                         OnCreate();
+#if DEBUG
                         UI.Notify("Debug(Created)");
+#endif
                     }
                 }
                 else if (Math.Sqrt(
@@ -63,7 +65,9 @@ namespace NaturallySpawner
                         (Math.Pow(Math.Pow(player.Z, 2) - (2 * player.Z * this.Vehicle.Position.Z) + Math.Pow(this.Vehicle.Position.Z, 2), 2))) < 100000)
                 {
                     OnCreate();
+#if DEBUG
                     UI.Notify("Debug(Created)");
+#endif
                 }
             }
             else if (Math.Sqrt(
@@ -80,7 +84,9 @@ namespace NaturallySpawner
             this.Vehicle.Delete();
             this.IsCreated = false;
             this.IsFirstTime = true;
+#if DEBUG
             UI.Notify("Debug(Deleted)");
+#endif
 
         }
 
