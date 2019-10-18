@@ -8,12 +8,14 @@ namespace NaturallySpawner
 {
     public class NaturSpawner : Script
     {
-        private ModelContainer[] vehicleModelList;
+        private ModelContainer[] modelList;
 
         public NaturSpawner()
         {
-            vehicleModelList = new ModelContainer[]
-            {
+            Debug.IsDebug = false;
+
+            modelList = new ModelContainer[]
+        {
             //Millitary
             new ModelContainer(VehicleHash.APC, new Vector3(-2454, 2979, 32), new Vector3(0, 0, -79)),
             new ModelContainer(VehicleHash.HalfTrack, new Vector3(-2455, 2985, 32), new Vector3(0, 0, -79)),
@@ -51,7 +53,7 @@ namespace NaturallySpawner
             new ModelContainer(VehicleHash.Comet3, new Vector3(-1890, 122.4f, 80.9f), new Vector3(0, 0, 58.1f)),
             new ModelContainer(VehicleHash.Cyclone, new Vector3(-1890, 122.4f, 80.9f), new Vector3(0, 0, 58.1f)),
             new ModelContainer(VehicleHash.Kuruma, new Vector3(303.6f, 996.1f, 29), new Vector3(0, 0, 90.8f)),
-        };
+    };
             this.Interval = 1000;
             Tick += NaturallySpawner_Tick;
         }
@@ -59,10 +61,10 @@ namespace NaturallySpawner
 
         private void NaturallySpawner_Tick(object sender, EventArgs e)
         {
-            if (!Game.IsLoading && !Game.IsPaused)
+            if (!Game.IsLoading)
                 try
                 {
-                    foreach (var model in vehicleModelList)
+                    foreach (var model in modelList)
                     {
                         model.Create();
                     }

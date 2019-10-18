@@ -44,9 +44,9 @@ namespace NaturallySpawner
                    (Math.Pow(Math.Pow(player.Z, 2) - (2 * player.Z * this.Position.Z) + Math.Pow(this.Position.Z, 2), 2))) < 100000) // 100000cm = 1000m = 1km
                 {
                     OnCreate();
-#if DEBUG
-                    UI.Notify("Debug(Created)");
-#endif
+                    if (Debug.IsDebug)
+                        UI.Notify("Debug(Created)");
+
                 }
             }
             else if (Math.Sqrt((Math.Pow(Math.Pow(player.X, 2) - (2 * player.X * this.Vehicle.Position.X) + Math.Pow(this.Vehicle.Position.X, 2), 2)) +
@@ -54,9 +54,8 @@ namespace NaturallySpawner
                     (Math.Pow(Math.Pow(player.Z, 2) - (2 * player.Z * this.Vehicle.Position.Z) + Math.Pow(this.Vehicle.Position.Z, 2), 2))) > 100000)
             {
                 Delete();
-#if DEBUG
-                UI.Notify("Debug(Deleted)");
-#endif
+                if (Debug.IsDebug)
+                    UI.Notify("Debug(Deleted)");
             }
         }
 
