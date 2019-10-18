@@ -8,14 +8,14 @@ namespace NaturallySpawner
 {
     public class NaturSpawner : Script
     {
-        private ModelContainer[] modelList;
+        private ModelContainer[] vehicleModelList;
 
         public NaturSpawner()
         {
-            modelList = new ModelContainer[]
+            vehicleModelList = new ModelContainer[]
             {
             //Millitary
-            new ModelContainer(VehicleHash.APC, new Vector3(-2454, 2979, 32), new Vector3(0, 0, -79), VehicleColor.DefaultAlloyColor, VehicleColor.DefaultAlloyColor),
+            new ModelContainer(VehicleHash.APC, new Vector3(-2454, 2979, 32), new Vector3(0, 0, -79)),
             new ModelContainer(VehicleHash.HalfTrack, new Vector3(-2455, 2985, 32), new Vector3(0, 0, -79)),
             new ModelContainer(VehicleHash.Brickade, new Vector3(-2452, 2954, 33), new Vector3(0, 0, -35)),
             new ModelContainer(VehicleHash.Frogger, new Vector3(300, -1452, 46), new Vector3(0, 0, 143), VehicleColor.MetallicWhite, VehicleColor.MetallicWhite),
@@ -26,7 +26,7 @@ namespace NaturallySpawner
             new ModelContainer(VehicleHash.Valkyrie, new Vector3(-1973, 2814, 33), new Vector3(0, 0, -125)),
             new ModelContainer(VehicleHash.Havok, new Vector3(-2097, 2822, 39), new Vector3(0, 0, -9), VehicleColor.MetallicRed, VehicleColor.MetallicRed),
             new ModelContainer(VehicleHash.Bombushka, new Vector3(-2004, 2856, 33), new Vector3(0, 0, 62)),
-            //city
+            //City
             new ModelContainer(VehicleHash.Nero, new Vector3(-1033, -490, 36), new Vector3(0, 0, -154)),
             new ModelContainer(VehicleHash.GP1, new Vector3(-448, -458, 32), new Vector3(0, 0, -13)),
             new ModelContainer(VehicleHash.Reaper, new Vector3(-141, -594, 32), new Vector3(0, 0, -115)),
@@ -48,6 +48,9 @@ namespace NaturallySpawner
             new ModelContainer(VehicleHash.CargoPlane, new Vector3(-1229.4f, -2266, 19.3f), new Vector3(0, 0, 64.7f)),
             new ModelContainer(VehicleHash.AlphaZ1, new Vector3(-1672, -3114, 13.7f), new Vector3(0, 0, 129.4f)),
             new ModelContainer(VehicleHash.Pfister811, new Vector3(-181.3f, 171, 69.6f), new Vector3(0, 0, 179.7f)),
+            new ModelContainer(VehicleHash.Comet3, new Vector3(-1890, 122.4f, 80.9f), new Vector3(0, 0, 58.1f)),
+            new ModelContainer(VehicleHash.Cyclone, new Vector3(-1890, 122.4f, 80.9f), new Vector3(0, 0, 58.1f)),
+            new ModelContainer(VehicleHash.Kuruma, new Vector3(303.6f, 996.1f, 29), new Vector3(0, 0, 90.8f)),
         };
             this.Interval = 1000;
             Tick += NaturallySpawner_Tick;
@@ -56,20 +59,18 @@ namespace NaturallySpawner
 
         private void NaturallySpawner_Tick(object sender, EventArgs e)
         {
-            if (!Game.IsPaused)
-            {
+            if (!Game.IsLoading && !Game.IsPaused)
                 try
                 {
-                    foreach (var model in modelList)
+                    foreach (var model in vehicleModelList)
                     {
                         model.Create();
                     }
                 }
                 catch (Exception ex)
                 {
-                    UI.Notify("Something's goin wrong: " + ex.Message);
+                    System.Windows.Forms.MessageBox.Show("Something's goin wrong: " + ex.Message, "GTA V Nature Spawner v 0.0.2", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
         }
     }
 }
