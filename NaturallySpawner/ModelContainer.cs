@@ -14,6 +14,7 @@ namespace NaturallySpawner
         public Vector3 Rotation { get; private set; }
         public VehicleColor Primarry { get; private set; }
         public VehicleColor Secondarry { get; private set; }
+        public Vector3 PlayerCoords { get; private set; }
 
         public ModelContainer(VehicleHash hash, Vector3 position, Vector3 rotation, VehicleColor primarry, VehicleColor secondarry)
         {
@@ -36,26 +37,29 @@ namespace NaturallySpawner
 
         public void Create()
         {
-            Vector3 player = Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 0, 0));
-            if (!IsCreated)
+            PlayerCoords = Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 0, 0));
+            if (PlayerCoords != default(Vector3))
             {
-                if (Math.Sqrt((Math.Pow(Math.Pow(player.X, 2) - (2 * player.X * this.Position.X) + Math.Pow(this.Position.X, 2), 2)) +
-                   (Math.Pow(Math.Pow(player.Y, 2) - (2 * player.Y * this.Position.Y) + Math.Pow(this.Position.Y, 2), 2)) +
-                   (Math.Pow(Math.Pow(player.Z, 2) - (2 * player.Z * this.Position.Z) + Math.Pow(this.Position.Z, 2), 2))) < 100000) // 100000cm = 1000m = 1km
+                if (!IsCreated)
                 {
-                    OnCreate();
-                    if (Debug.IsDebug)
-                        UI.Notify("Debug(Created)");
+                    if (Math.Sqrt((Math.Pow(Math.Pow(PlayerCoords.X, 2) - (2 * PlayerCoords.X * this.Position.X) + Math.Pow(this.Position.X, 2), 2)) +
+                       (Math.Pow(Math.Pow(PlayerCoords.Y, 2) - (2 * PlayerCoords.Y * this.Position.Y) + Math.Pow(this.Position.Y, 2), 2)) +
+                       (Math.Pow(Math.Pow(PlayerCoords.Z, 2) - (2 * PlayerCoords.Z * this.Position.Z) + Math.Pow(this.Position.Z, 2), 2))) < 200000) // 100000cm = 1000m = 1km
+                    {
+                        OnCreate();
+                        if (Debug.IsDebug)
+                            UI.Notify("Debug(Created)");
 
+                    }
                 }
-            }
-            else if (Math.Sqrt((Math.Pow(Math.Pow(player.X, 2) - (2 * player.X * this.Vehicle.Position.X) + Math.Pow(this.Vehicle.Position.X, 2), 2)) +
-                    (Math.Pow(Math.Pow(player.Y, 2) - (2 * player.Y * this.Vehicle.Position.Y) + Math.Pow(this.Vehicle.Position.Y, 2), 2)) +
-                    (Math.Pow(Math.Pow(player.Z, 2) - (2 * player.Z * this.Vehicle.Position.Z) + Math.Pow(this.Vehicle.Position.Z, 2), 2))) > 100000)
-            {
-                Delete();
-                if (Debug.IsDebug)
-                    UI.Notify("Debug(Deleted)");
+                else if (Math.Sqrt((Math.Pow(Math.Pow(PlayerCoords.X, 2) - (2 * PlayerCoords.X * this.Vehicle.Position.X) + Math.Pow(this.Vehicle.Position.X, 2), 2)) +
+                        (Math.Pow(Math.Pow(PlayerCoords.Y, 2) - (2 * PlayerCoords.Y * this.Vehicle.Position.Y) + Math.Pow(this.Vehicle.Position.Y, 2), 2)) +
+                        (Math.Pow(Math.Pow(PlayerCoords.Z, 2) - (2 * PlayerCoords.Z * this.Vehicle.Position.Z) + Math.Pow(this.Vehicle.Position.Z, 2), 2))) > 200000)
+                {
+                    Delete();
+                    if (Debug.IsDebug)
+                        UI.Notify("Debug(Deleted)");
+                }
             }
         }
 
@@ -69,12 +73,15 @@ namespace NaturallySpawner
         private void OnCreate()
         {
             this.Vehicle = World.CreateVehicle(new Model(this.Hash), this.Position);
-            this.Vehicle.Rotation = this.Rotation;
-            if (this.Primarry != VehicleColor.DefaultAlloyColor)
-                this.Vehicle.PrimaryColor = this.Primarry;
-            if (this.Secondarry != VehicleColor.DefaultAlloyColor)
-                this.Vehicle.SecondaryColor = this.Secondarry;
-            this.IsCreated = true;
+            if (Vehicle != null)
+            {
+                this.Vehicle.Rotation = this.Rotation;
+                if (this.Primarry != VehicleColor.DefaultAlloyColor)
+                    this.Vehicle.PrimaryColor = this.Primarry;
+                if (this.Secondarry != VehicleColor.DefaultAlloyColor)
+                    this.Vehicle.SecondaryColor = this.Secondarry;
+                this.IsCreated = true;
+            }
         }
     }
 }

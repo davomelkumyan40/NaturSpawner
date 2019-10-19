@@ -27,7 +27,12 @@ namespace NaturallySpawner
             new ModelContainer(VehicleHash.Molotok, new Vector3(-2607, 3307, 33), new Vector3(0, 0, -124)),
             new ModelContainer(VehicleHash.Valkyrie, new Vector3(-1973, 2814, 33), new Vector3(0, 0, -125)),
             new ModelContainer(VehicleHash.Havok, new Vector3(-2097, 2822, 39), new Vector3(0, 0, -9), VehicleColor.MetallicRed, VehicleColor.MetallicRed),
-            new ModelContainer(VehicleHash.Bombushka, new Vector3(-2004, 2856, 33), new Vector3(0, 0, 62)),
+            new ModelContainer(VehicleHash.Bombushka, new Vector3(-2100, 2834, 33.4f), new Vector3(0, 0, -10.6f)),
+            new ModelContainer(VehicleHash.Hydra, new Vector3(-2750, 3287, 33.3f), new Vector3(0, 0, 123.6f)),
+            new ModelContainer(VehicleHash.Hunter, new Vector3(-1924, 3127.6f, 34.1f), new Vector3(0, 0, 154.5f)),
+            new ModelContainer(VehicleHash.Savage, new Vector3(-2479.2f, 2950.4f, 49.1f), new Vector3(0, 0, -46.8f)),
+            new ModelContainer(VehicleHash.Insurgent, new Vector3(473.1f, -3092, 5.9f), new Vector3(0, 0, -183.9f)),
+            new ModelContainer(VehicleHash.Insurgent2, new Vector3(472.9f, -3079, 5.9f), new Vector3(0, 0, -183.7f)),
             //City
             new ModelContainer(VehicleHash.Nero, new Vector3(-1033, -490, 36), new Vector3(0, 0, -154)),
             new ModelContainer(VehicleHash.GP1, new Vector3(-448, -458, 32), new Vector3(0, 0, -13)),
@@ -37,7 +42,7 @@ namespace NaturallySpawner
             new ModelContainer(VehicleHash.XA21, new Vector3(824, 1175, 323), new Vector3(0, 0, 167)),
             new ModelContainer(VehicleHash.Visione, new Vector3(689, 72, 83), new Vector3(0, 0, 61)),
             new ModelContainer(VehicleHash.Elegy, new Vector3(529, -28, 69), new Vector3(0, 0, 35)),
-            new ModelContainer(VehicleHash.Seven70, new Vector3(253, 75, 99), new Vector3(0, 0, -25)),
+            new ModelContainer(VehicleHash.Seven70, new Vector3(253.5f, 75, 99.1f), new Vector3(0, 0, -25)),
             new ModelContainer(VehicleHash.Nightshade, new Vector3(174, 471, 141), new Vector3(0, 0, -18)),
             new ModelContainer(VehicleHash.Cognoscenti2, new Vector3(-302, -742, 38), new Vector3(0, 0, 163)),
             new ModelContainer(VehicleHash.Police4, new Vector3(146, -695.5f, 32.7f), new Vector3(0, 0, -113.7f)),
@@ -48,13 +53,14 @@ namespace NaturallySpawner
             new ModelContainer(VehicleHash.XLS2, new Vector3(-978, -2938, 14), new Vector3(0, 0, 124)),
             new ModelContainer(VehicleHash.Khamelion, new Vector3(485, -1082, 28), new Vector3(0, 0, 92)),
             new ModelContainer(VehicleHash.CargoPlane, new Vector3(-1229.4f, -2266, 19.3f), new Vector3(0, 0, 64.7f)),
-            new ModelContainer(VehicleHash.AlphaZ1, new Vector3(-1672, -3114, 13.7f), new Vector3(0, 0, 129.4f)),
+            new ModelContainer(VehicleHash.AlphaZ1, new Vector3(-1672, -3114, 13.7f), new Vector3(0, 0, -88.3f)),
             new ModelContainer(VehicleHash.Pfister811, new Vector3(-181.3f, 171, 69.6f), new Vector3(0, 0, 179.7f)),
             new ModelContainer(VehicleHash.Comet3, new Vector3(-1890, 122.4f, 80.9f), new Vector3(0, 0, 58.1f)),
-            new ModelContainer(VehicleHash.Cyclone, new Vector3(-1890, 122.4f, 80.9f), new Vector3(0, 0, 58.1f)),
-            new ModelContainer(VehicleHash.Kuruma, new Vector3(303.6f, 996.1f, 29), new Vector3(0, 0, 90.8f)),
+            new ModelContainer(VehicleHash.Cyclone, new Vector3(-1997.6f, 296.7f, 91), new Vector3(0, 0, 79.6f)),
+            new ModelContainer(VehicleHash.Kuruma, new Vector3(303.6f, -996.1f, 29), new Vector3(0, 0, 90.8f)),
+            new ModelContainer(VehicleHash.Contender, new Vector3(603.2f, -3248.3f, 6.3f), new Vector3(0, 0, 5.2f)),
     };
-            this.Interval = 1000;
+            this.Interval = 2000;
             Tick += NaturallySpawner_Tick;
         }
 
@@ -71,7 +77,7 @@ namespace NaturallySpawner
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Forms.MessageBox.Show("Something's goin wrong: " + ex.Message, "GTA V Nature Spawner v 0.0.2", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("Something's goin wrong: " + ex.Message, "GTA V Nature Spawner v 1.0.1", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
         }
     }

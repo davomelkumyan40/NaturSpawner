@@ -8,11 +8,6 @@ namespace NaturallySpawner
 {
     internal static class Debug
     {
-        static Debug()
-        {
-            IsDebug = false;
-        }
-
         public static bool IsDebug { get; set; }
     }
 }
