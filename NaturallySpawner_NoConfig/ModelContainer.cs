@@ -3,9 +3,8 @@ using GTA;
 using GTA.Native;
 using GTA.Math;
 
-namespace NaturallySpawner
+namespace NaturallySpawner_NoConfig
 {
-    [Serializable]
     public class ModelContainer
     {
         private bool IsCreated { get; set; }
@@ -70,11 +69,8 @@ namespace NaturallySpawner
 
         public void Delete()
         {
-            if (this.Vehicle != null)
-            {
-                this.Vehicle.Delete();
-                this.IsCreated = false;
-            }
+            this.Vehicle.Delete();
+            this.IsCreated = false;
         }
 
         public void Create()

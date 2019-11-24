@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaturallySpawner", "NaturallySpawner\NaturallySpawner.csproj", "{E9A3B2DE-0B9C-4842-832C-7BB0FAC0CE3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaturallySpawner_NoConfig", "NaturallySpawner_NoConfig\NaturallySpawner_NoConfig.csproj", "{7CA95647-9E7F-400F-8476-6C94B56DCD99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E9A3B2DE-0B9C-4842-832C-7BB0FAC0CE3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9A3B2DE-0B9C-4842-832C-7BB0FAC0CE3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9A3B2DE-0B9C-4842-832C-7BB0FAC0CE3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CA95647-9E7F-400F-8476-6C94B56DCD99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA95647-9E7F-400F-8476-6C94B56DCD99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CA95647-9E7F-400F-8476-6C94B56DCD99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA95647-9E7F-400F-8476-6C94B56DCD99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

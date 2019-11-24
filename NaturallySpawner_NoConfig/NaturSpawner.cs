@@ -3,17 +3,12 @@ using GTA;
 using GTA.Math;
 using GTA.Native;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml.Serialization;
 
-namespace NaturallySpawner
+namespace NaturallySpawner_NoConfig
 {
     public class NaturSpawner : Script
     {
-        public ModelContainer[] modelList;
-        private string path = "./scripts/Config.xml";
-        private XmlSerializer formatter = new XmlSerializer(typeof(ModelContainer[]));
-        public ModelContainer[] defaultList = new ModelContainer[]
+        public ModelContainer[] modelList = new ModelContainer[]
         {
             //Millitary
             new ModelContainer(VehicleHash.APC, new Vector3(-2454, 2979, 32), new Vector3(0, 0, -79), 100000),
@@ -68,64 +63,25 @@ namespace NaturallySpawner
 
         public NaturSpawner()
         {
-            try
-            {
-                using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))
-                {
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        if (reader.ReadToEnd().Length < 100)
-                        {
-                            formatter.Serialize(stream, defaultList);
-                            modelList = defaultList;
-                        }
-                        else
-                        {
-                            stream.Position = 0;
-                            modelList = (ModelContainer[])formatter.Deserialize(stream);
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                System.Windows.Forms.MessageBox.Show("Something's going wrong in Configuration file try to delete it and run mod again.");
-            }
-
-
             this.Interval = 2000;
             Tick += NaturallySpawner_Tick;
-            //KeyDown += NaturSpawner_KeyDown; // DEBUG
-        }
-
-        private void NaturSpawner_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.B)
-            {
-                if (modelList != null)
-                    foreach (var item in modelList)
-                        item.Delete();
-
-                using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))
-                {
-                    modelList = (ModelContainer[])formatter.Deserialize(stream);
-                }
-                UI.Notify("Config.xml Loaded");
-            }
+            //KeyDown += NaturSpawner_KeyDown;
         }
 
         private void NaturallySpawner_Tick(object sender, EventArgs e)
         {
             if (!Game.IsLoading)
-                if (modelList != null)
+                try
                 {
                     foreach (var model in modelList)
                     {
                         model.CreateOrDelete();
                     }
                 }
-                else
-                    System.Windows.Forms.MessageBox.Show("Something's goin wrong: 'ModelList is empty'");
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show("Something's goin wrong: " + ex.Message, "GTA V Nature Spawner v 1.0.6", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
         }
     }
 }
